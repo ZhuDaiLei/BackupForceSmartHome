@@ -1,6 +1,6 @@
 package com.xhs.backupforcesmarthome.utils;
 
-import com.xhs.backupforce.constants.CustomString;
+import com.xhs.backupforcesmarthome.constants.UserDefinedString;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,7 +24,7 @@ public class MyStringUtil {
      * @return true:为空  false:不为空
      */
     public static boolean isEmpty(String str) {
-        return null == str || str.equals(CustomString.EMPTY_1) || str.equals(CustomString.EMPTY_2);
+        return null == str || str.equals(UserDefinedString.EMPTY_1) || str.equals(UserDefinedString.EMPTY_2);
     }
 
     /**
@@ -36,8 +36,8 @@ public class MyStringUtil {
     public static String handleEnterAndBlank(String str) {
         String result = str.trim();
         if (!isEmpty(str)) {
-            if (str.contains(CustomString.ENTER)) {
-                result = str.trim().replace(CustomString.ENTER, "");
+            if (str.contains(UserDefinedString.ENTER)) {
+                result = str.trim().replace(UserDefinedString.ENTER, "");
             }
         }
         return result;

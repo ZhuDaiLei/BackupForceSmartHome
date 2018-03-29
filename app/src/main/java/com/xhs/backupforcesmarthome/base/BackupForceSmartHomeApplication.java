@@ -3,7 +3,7 @@ package com.xhs.backupforcesmarthome.base;
 import android.app.Application;
 
 import com.socks.library.KLog;
-import com.xhs.backupforcesmarthome.BuildConfig;
+import com.xhs.backupforcesmarthome.config.InitConfig;
 
 import org.litepal.LitePal;
 
@@ -35,6 +35,6 @@ public class BackupForceSmartHomeApplication extends Application {
      * 初始化KLog
      */
     private void initKLog() {
-        KLog.init(BuildConfig.LOG_DEBUG, "Backup Force");
+        KLog.init(InitConfig.LOG_DEBUG, "Backup Force");
     }
 }

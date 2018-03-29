@@ -80,6 +80,14 @@ public class MyImageUtil {
         return createScaleBitmap(src, reqWidth, reqHeight);
     }
 
+    /**
+     * 从SDka中加载图片
+     *
+     * @param pathName  图片路径
+     * @param reqWidth  reqWidth
+     * @param reqHeight reqHeight
+     * @return Bitmap
+     */
     public static Bitmap decodeSampledBitmapFromSd(String pathName, int reqWidth, int reqHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
