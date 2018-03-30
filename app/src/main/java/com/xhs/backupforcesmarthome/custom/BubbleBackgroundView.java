@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.internal.operators.observable.ObservableTimer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -50,27 +51,28 @@ public class BubbleBackgroundView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
+        Consumer consumer = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                if (getChildCount() >= 10) {
+                    removeView(getChildAt(0));
+                }
+                if (getChildCount() < 10) {
+                    ImageView imageView = new ImageView(context);
+                    imageView.setImageResource(R.drawable.bubble);
+                    imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                    addView(imageView);
+                    setChildLayout(imageView);
+                    //setAnimation(imageView);
+                }
+            }
+        };
+        Observable timer = Observable.timer(1, TimeUnit.SECONDS);
 
-
-        Observable.timer(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
+        timer.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        if (getChildCount() >= 10) {
-                            removeView(getChildAt(0));
-                        }
-                        if (getChildCount() < 10) {
-                            ImageView imageView = new ImageView(context);
-                            imageView.setImageResource(R.drawable.bubble);
-                            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                            addView(imageView);
-                            setChildLayout(imageView);
-                            //setAnimation(imageView);
-                        }
-                    }
-                });
+                .subscribe(consumer);
+
     }
 
     private void setChildLayout(ImageView imageView) {
