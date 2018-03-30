@@ -8,6 +8,14 @@
 
     <com.xhs.backupforcesmarthome.custom.BubbleUp
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <com.xhs.backupforcesmarthome.custom.BubbleBackgroundView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/bg"
+        >
+    </com.xhs.backupforcesmarthome.custom.BubbleBackgroundView>
 
 </android.support.constraint.ConstraintLayout>
